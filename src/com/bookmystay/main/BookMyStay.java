@@ -7,6 +7,8 @@ import com.bookmystay.reservation.BookingService;
 import com.bookmystay.reservation.Reservation;
 import com.bookmystay.reservation.ReservationRequest;
 import com.bookmystay.roominventory.RoomInventory;
+import com.bookmystay.service.Service;
+import com.bookmystay.service.ServiceManager;
 
 /*
  * Main Class 
@@ -33,6 +35,7 @@ public class BookMyStay {
 		
 		BookingQueue bookingQueue = new BookingQueue();
 		BookingService bookingService = new BookingService(roomInventory);
+		ServiceManager serviceManager = new ServiceManager();
 		
 		bookingQueue.addBookingRequest(new ReservationRequest("Nish", "single", 2));
 		bookingQueue.addBookingRequest(new ReservationRequest("Nish", "suite", 1));
@@ -40,6 +43,10 @@ public class BookMyStay {
 		while (bookingQueue.hasRequests()) {
 			ReservationRequest request = bookingQueue.getNextRequest();
 			Reservation reservation = bookingService.processRequest(request);
+			
+			if (reservation != null) {
+				serviceManager.addService(reservation.getReservationId(), new Service("Breakfast", 50));
+			}
 		}
 		
 		scanner.close();
