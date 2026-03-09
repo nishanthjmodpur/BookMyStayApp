@@ -7,9 +7,10 @@ import com.bookmystay.roominventory.RoomInventory;
 /*
  * Main Class 
  * 
- * Entry point for Use Case 1
+ * Entry point for Use Case 2
  * 
  * A room inventory object is created and room related data is inserted into hashmap.
+ * room search to check available rooms.
  * 
  * @author Developer
  * @version 1.0
@@ -23,6 +24,8 @@ public class BookMyStay {
 		roomInventory.addRoom("single", 10, 200.00);
 		roomInventory.addRoom("double", 10, 400.00);
 		roomInventory.addRoom("suite", 5, 1500.00);
+		
+		roomInventory.roomSearch();
 		
 		scanner.close();
 		

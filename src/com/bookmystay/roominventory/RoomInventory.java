@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /*
- * Use Case 1: RoomInventory class
+ * Use Case 2: RoomInventory class
+ * 
+ * This class stores room count, pricing related information for all room types.
+ * 
+ * roomSearch(): displays room types with count of available rooms and price per night of that type of room.
  * 
  */
 
@@ -36,15 +40,11 @@ public class RoomInventory {
 	}
 	
 	private void addRoomCount(String roomType, int count) {
-		if (this.roomCount.get(roomType) != null) {
-			this.roomCount.put(roomType, count);
-		}
+		this.roomCount.put(roomType, count);
 	}
 	
 	private void addRoomPrice(String roomType, double price) {
-		if (this.roomPrice.get(roomType) != null) {
-			this.roomPrice.put(roomType, price);
-		}
+		this.roomPrice.put(roomType, price);
 	}
 	
 	public void addRoom(String roomType, int count, double price) {
@@ -62,6 +62,17 @@ public class RoomInventory {
 	public void updateRoomCount(String roomType, int count) {
 		if (this.roomCount.containsKey(roomType)) {
 			this.roomCount.put(roomType, count);
+		}
+	}
+	
+	/*
+	 *  roomSearch(): displays room types with count of available rooms and price per night of that type of room.
+	 */
+	
+	public void roomSearch() {
+		System.out.println("Available rooms: ");
+		for (String roomType : roomTypes) {
+			System.out.println("Room Type: " + roomType + " \t" + "Available rooms: " + getRoomCount(roomType) + "\t" + "Price Per Night: " + getRoomPrice(roomType));
 		}
 	}
 	
