@@ -2,18 +2,22 @@ package com.bookmystay.main;
 
 import java.util.Scanner;
 
+import com.bookmystay.reservation.BookingQueue;
+import com.bookmystay.reservation.BookingService;
+import com.bookmystay.reservation.Reservation;
+import com.bookmystay.reservation.ReservationRequest;
 import com.bookmystay.roominventory.RoomInventory;
 
 /*
  * Main Class 
  * 
- * Entry point for Use Case 2
+ * Entry point for Use Case 4
  * 
  * A room inventory object is created and room related data is inserted into hashmap.
  * room search to check available rooms.
  * 
  * @author Developer
- * @version 1.0
+ * @version 4.0
  */
 
 public class BookMyStay {
@@ -26,6 +30,17 @@ public class BookMyStay {
 		roomInventory.addRoom("suite", 5, 1500.00);
 		
 		roomInventory.roomSearch();
+		
+		BookingQueue bookingQueue = new BookingQueue();
+		BookingService bookingService = new BookingService(roomInventory);
+		
+		bookingQueue.addBookingRequest(new ReservationRequest("Nish", "single", 2));
+		bookingQueue.addBookingRequest(new ReservationRequest("Nish", "suite", 1));
+		
+		while (bookingQueue.hasRequests()) {
+			ReservationRequest request = bookingQueue.getNextRequest();
+			Reservation reservation = bookingService.processRequest(request);
+		}
 		
 		scanner.close();
 		

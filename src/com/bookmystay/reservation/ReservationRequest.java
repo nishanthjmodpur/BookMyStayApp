@@ -22,7 +22,7 @@ public class ReservationRequest {
 		return guestName;
 	}
 	
-	public String roomType() {
+	public String getRoomType() {
 		return roomType;
 	}
 	
